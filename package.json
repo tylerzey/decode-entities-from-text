@@ -20,6 +20,10 @@
       "pre-commit": "tsdx lint"
     }
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tylerzey/decode-entities-from-text.git"
+  },
   "prettier": {
     "printWidth": 80,
     "semi": true,
