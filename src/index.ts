@@ -1,20 +1,25 @@
+interface Translator { [key: string]: string }
+
 const decodeEntities = (stringIncludingEntities: String = '') => {
-  const element = document.createElement('div');
 
-  function decodeHTMLEntities(dirtyString: String) {
-    if (!dirtyString) return '';
 
-    // strip script/html tags
-    let newStr = dirtyString.replace(/<script[^>]*>([\S\s]*?)<\/script>/gim, '');
-    newStr = newStr.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gim, '');
-    element.innerHTML = newStr;
-    const returnValue = element.textContent;
-    element.textContent = '';
+  var translate_re = /&(nbsp|amp|quot|lt|gt);/g;
 
-    return returnValue;
-  }
+  const translate: Translator = {
+    "nbsp": " ",
+    "amp": "&",
+    "quot": "\"",
+    "lt": "<",
+    "gt": ">"
+  };
 
-  return decodeHTMLEntities(stringIncludingEntities);
+  return stringIncludingEntities.replace(translate_re, (_, entity: string) => {
+    return translate[entity];
+  }).replace(/&#(\d+);/gi, (_, numStr) => {
+    const num = parseInt(numStr, 10);
+    return String.fromCharCode(num);
+  });
+
 };
 
 export default decodeEntities
