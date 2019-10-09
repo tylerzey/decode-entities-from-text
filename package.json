@@ -1,6 +1,6 @@
 {
   "name": "decode-entities-from-text",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "module": "dist/decode-entities-from-text.esm.js",
   "typings": "dist/index.d.ts",
